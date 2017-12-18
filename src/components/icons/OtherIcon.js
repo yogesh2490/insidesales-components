@@ -1,7 +1,7 @@
 import React from 'react';
 
 const OtherIcon = props => (
-  <svg {...props.size || { width: '24px', height: '24px' }} {...props} viewBox="0 0 100 100">
+  <svg remove {...props.size || { width: '24px', height: '24px' }} {...props} viewBox="0 0 100 100">
     <title>Other Icon</title>
     <path d="M67.6,74.13h-1v-3h1a3.54,3.54,0,0,0,3.53-3.53v-1h3v1A6.54,6.54,0,0,1,67.6,74.13Z"/>
     <path d="M61.88,74.13h-9.5v-3h9.5v3Zm-14.25,0h-9.5v-3h9.5v3Z"/>

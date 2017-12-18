@@ -39,7 +39,7 @@ const IconWrapper = styled.div`
 
 const icons = _.map(_.omit(Icons, 'TaskIcons'), (icon, key) => {
   const removeIcon = _.get(icon({size: undefined}), 'props.remove');
-  const IconEl = React.createElement(icon, { fill: colors.white, size: { width: '50', height: '50' } });
+  const IconEl = React.createElement(icon, { fill: colors.white, size: { width: '24', height: '24' } });
   return (
   <IconWrapper remove={removeIcon} onClick={action(key)} key={key}>
     {IconEl}

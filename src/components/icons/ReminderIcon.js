@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ReminderIcon = props => (
-  <svg {...props.size || { width: '24px', height: '24px' }} {...props} viewBox="0 0 100 100">
+  <svg remove {...props.size || { width: '24px', height: '24px' }} {...props} viewBox="0 0 100 100">
     <title>Reminder Icon</title>
     <path d="M39.4,27.1C38,25.8,36.2,25,34.1,25c-4.1,0-7.5,3.4-7.5,7.5c0,1.5,0.4,2.8,1.2,4C30.7,32.4,34.7,29.1,39.4,27.1z"/>
     <path d="M72.1,36.6c0.8-1.2,1.2-2.6,1.2-4.1c0-4.1-3.4-7.5-7.5-7.5c-2.1,0-3.9,0.8-5.3,2.2C65.2,29.2,69.2,32.4,72.1,36.6z"/>
