@@ -53,8 +53,8 @@ const OptionsContainer = styled.div`
     position: absolute;
     content: '';
     right: 10px;
-    top: ${props => props.openUp ? 'auto' : `-5px`};
-    bottom: ${props => props.openUp ? '-5px' : `auto`};
+    top: ${props => props.openUp ? 'auto' : '-5px'};
+    bottom: ${props => props.openUp ? '-5px' : 'auto'};
     width: 14px;
     height: 14px;
     transform: rotate(-45deg);
@@ -66,8 +66,8 @@ const OptionsContainer = styled.div`
     position: absolute;
     content: '';
     right: 10px;
-    top: ${props => props.openUp ? 'auto' : `-16px`};
-    bottom: ${props => props.openUp ? '-16px' : `auto`};
+    top: ${props => props.openUp ? 'auto' : '-16px'};
+    bottom: ${props => props.openUp ? '-16px' : 'auto'};
     width: 0;
     height: 0;
     border-top: 8px solid ${props => props.openUp ? colors.white : 'transparent'};
