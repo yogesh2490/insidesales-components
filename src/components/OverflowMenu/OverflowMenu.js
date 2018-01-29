@@ -40,8 +40,8 @@ const SelectOption = styled.div`
 
 const OptionsContainer = styled.div`
   position: absolute;
-  top: ${props => props.openUp ? 'initial' : `31px`};
-  bottom: ${props => props.openUp ? '31px' : `initial`};
+  top: ${props => props.openUp ? 'initial' : '31px'};
+  bottom: ${props => props.openUp ? '31px' : 'initial'};
   right: -6px;
 
   min-width: 200px;
