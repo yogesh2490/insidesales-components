@@ -123,6 +123,22 @@ storiesOf('Form', module)
                 />
               )
             },
+            {
+              title: 'Example: text input with options',
+              sectionFn: () => (
+                <TextInput
+                  label="Search"
+                  name="seven"
+                  onChange={action('value')}
+                  options={[
+                    {
+                      label: 'Foo',
+                      value: 'Bar'
+                    }
+                  ]}
+                />
+              )
+            },
           ]
         }
       ]
