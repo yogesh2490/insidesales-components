@@ -4,9 +4,10 @@ import React from 'react';
 
 const RadioListComponent = ({ radios, value, onChange, name }) => (
   <div>
-    {radios.map(radio => (<RadioComponent
+    {radios.map((radio, key) => (<RadioComponent
        id={radio.id}
        name={name}
+       key={key}
        label={radio.label}
        value={radio.value}
        setValue={(val) => { onChange(val); } }
@@ -23,7 +24,7 @@ RadioListComponent.PropTypes = {
   })),
   name: PropTypes.string.isRequired,
   value: PropTypes.any,
-  onChange: PropTypes.func
+  onChange: PropTypes.func.isRequired
 };
 
 export default RadioListComponent;
