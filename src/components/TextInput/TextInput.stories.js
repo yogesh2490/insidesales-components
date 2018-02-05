@@ -133,10 +133,41 @@ storiesOf('Form', module)
                   options={[
                     {
                       label: 'Foo',
+                      value: 'Foo'
+                    },
+                    {
+                      label: 'Bar',
                       value: 'Bar'
+                    },
+                    {
+                      label: 'Baz',
+                      value: 'Baz'
                     }
                   ]}
                 />
+              )
+            },
+            {
+              title: 'Example: small text input with options and low padding',
+              sectionFn: () => (
+                <div style={{width: '90px'}}>
+                  <TextInput
+                    label="Country"
+                    name="Country"
+                    lowPadding={true}
+                    onChange={action('value')}
+                    options={[
+                      {
+                        label: '+1 (US)',
+                        value: '+1'
+                      },
+                      {
+                        label: '+44 (UK)',
+                        value: '+44'
+                      },
+                    ]}
+                  />
+                </div>
               )
             },
           ]

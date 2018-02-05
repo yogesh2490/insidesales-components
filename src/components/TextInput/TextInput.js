@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
-import PropTypes, { objectOf } from 'prop-types';
-import { get } from 'lodash';
+import PropTypes from 'prop-types';
+import { get, filter } from 'lodash';
 
 import { SearchMaterialIcon } from '../icons';
 import { colors, typography, darkScrollbar } from '../styles';
@@ -181,6 +181,7 @@ class TextInput extends React.Component {
     this.state = {
       focused: false,
       optionsListVisible: false,
+      value: ""
     };
   }
 
@@ -278,8 +279,12 @@ class TextInput extends React.Component {
     this.closeOptionsList();
   }
 
+  getPromotedOptions = () => {
+    return this.state.value ? filter(this.props.options, o => o.value.toLowerCase().indexOf(this.state.value.toLowerCase()) > -1) : [];
+  }
+
   render() {
-    const { label, name, error, disabled, collapsed, className, options, promotedOptions } = this.props;
+    const { label, name, error, disabled, collapsed, className, options, promotedOptions, lowPadding } = this.props;
     return (
       <TextInputWrapper className={className}>
         <TextBox
@@ -311,15 +316,16 @@ class TextInput extends React.Component {
             <TextLabel isFocused={this.state.focused} open={this.state.value} htmlFor={name} error={error}>{label}</TextLabel>
           }
         </TextBox>
-        { options && <Caret onClick={this.toggleOptionsList} />}
+        { options && <Caret onClick={this.toggleOptionsList} className={'pb-caret'} />}
         {this.renderHelperText()}
         { options && <SelectOptions
           ref={(options) => { this.clickEventElement = options; }}
           onOptionUpdate={this.onDropDownSelect}
-          promotedOptions={promotedOptions}
+          promotedOptions={promotedOptions || this.getPromotedOptions() }
           options={options}
           optionsCount={options.length}
           visible={this.state.optionsListVisible} 
+          lowPadding={lowPadding}
         />}
       </TextInputWrapper>
     );
@@ -340,16 +346,17 @@ TextInput.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   collapsed: PropTypes.bool,
-  options: PropTypes.arrayOf(objectOf({
+  lowPadding: PropTypes.bool,
+  options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any,
     label: PropTypes.string,
     disabled: PropTypes.bool
   })),
-  promotedOptions: PropTypes.arrayOf(objectOf({
+  promotedOptions: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any,
     label: PropTypes.string,
     disabled: PropTypes.bool
-  }))
+  })) 
 };
 
 export default TextInput;

@@ -114,7 +114,7 @@ const SelectOption = styled.div`
     if (props.visible) return 1;
     return 0;
   }};
-  padding: 0 24px;
+  padding: 0 ${props => props.lowPadding ? '4px' : '24px'};
 
   color:
   ${(props) => {
@@ -155,9 +155,13 @@ const PromotedOptions = styled.div`
   width: 100%;
 `;
 
-const SearchInput = styled(TextInput)`
-  padding: 0 24px;
-`;
+const SearchInput = (props) => {
+  const SearchTextInput = styled(TextInput)` 
+    padding: 0 24px;
+  `;
+
+  return (<SearchTextInput {...props} />);
+}
 
 class SelectOptions extends React.Component {
 
@@ -177,10 +181,12 @@ class SelectOptions extends React.Component {
     };
     return (
       <SelectOption
+        className={'pb-option'}
         key={keyID}
         visible={this.props.visible}
         style={delay}
         disabled={disabled}
+        lowPadding={this.props.lowPadding}
         onClick={() => {
           if (!disabled) {
             onOptionUpdate(value);
@@ -227,13 +233,16 @@ class SelectOptions extends React.Component {
     );
   }
 
-  render() {
+  componentDidUpdate() {
     // Check to see if user has opened input, to know if it's okay to run close animation. Not good to run close animation on load.
     if (this.props.visible && !this.state.inputUsed) {
       this.setState({
         inputUsed: true
       });
     }
+  }
+
+  render() {
     return (
       <SelectOptionsContainer dirty={this.state.inputUsed} {...this.props}>
         <SelectOptionsWrapper {...this.props} ref={(el) => { this.optionWrapperEl = el; }}>
