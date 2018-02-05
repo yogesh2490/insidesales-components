@@ -210,7 +210,7 @@ class SelectOptions extends React.Component {
 
   renderPromotedOptions = () => {
     const { promotedOptions } = this.props;
-    if (promotedOptions) {
+    if (_.get(promotedOptions, 'length')) {
       return (
         <PromotedOptions listLength={_.size(promotedOptions)}>
           { promotedOptions.map((option, idx) => this.optionElement(idx, option.value, option.label, option.disabled)) }
@@ -260,7 +260,12 @@ SelectOptions.propTypes = {
   promotedOption: PropTypes.objectOf(PropTypes.string),
   options: PropTypes.array.isRequired,
   optionsCount: PropTypes.number.isRequired,
-  visible: PropTypes.bool.isRequired
+  visible: PropTypes.bool.isRequired,
+  promotedOptions: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.any,
+    label: PropTypes.string,
+    disabled: PropTypes.bool
+  }))
 };
 
 SelectOptions.defaultProps = {

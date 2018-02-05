@@ -22,7 +22,7 @@ const TextInputWrapper = styled.div`
 const Caret = styled.div`
   position: absolute;
   right: 0;
-  top: 60%;
+  top: 62.5%;
   transform: translateY(-50%);
   width: 32px;
   cursor: pointer;
@@ -227,6 +227,10 @@ class TextInput extends React.Component {
 
   renderHelperText = () => {
     const { error, helper, collapsed } = this.props;
+
+    if(!error && !helper) {
+      return null;
+    }
 
     if (collapsed && !this.state.value && !this.state.focused && !error) {
       return null;
