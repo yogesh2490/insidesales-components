@@ -201,7 +201,7 @@ class SelectOptions extends React.Component {
         }}>
           {multiSelect &&
           <Checkbox
-            defaultChecked={optionSelected}
+            checked={optionSelected}
             onClick={() => {
               if (!disabled) {
                 onOptionUpdate(value);
