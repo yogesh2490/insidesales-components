@@ -12,13 +12,12 @@ import SelectInputDisplay from './SelectInputDisplay';
 import SelectOptions from './SelectOptions';
 
 export function checkDocumentEvent(event) {
-  const component = ReactDOM.findDOMNode(this.clickEventElement);
+  const component = ReactDOM.findDOMNode(this.refs.clickEventElement);
   if (!component) {
     document.removeEventListener('click', this.checkDocumentEvent);
     return;
   }
   const clickedOutside = !component.contains(event.target);
-
   if (this.state.optionsListVisible && clickedOutside) {
     this.closeOptionsList();
   }
@@ -95,7 +94,7 @@ class SelectInput extends React.Component {
         const clickedElement = e.target.getAttribute('name');
         return clickedElement === 'selectSearch';
       }
-      if (clickedInsideSearch) {
+      if (clickedInsideSearch()) {
         return
       }
       this.closeOptionsList();
@@ -183,19 +182,20 @@ class SelectInput extends React.Component {
           ref="clickEventElement" style={this.props.containerStyles || {}}
           className={this.props.className}
           id="select-input__wrapper"
-          onClick={(e) => { if (!isDisabled) { this.toggleOptionsList(e); } }}
         >
           {this.props.label && !this.props.addButtonList &&
             <SelectInputLabel>{this.props.label}</SelectInputLabel>
           }
-          <SelectInputDisplay
-            defaultLabel={this.props.defaultLabel}
-            label={this.determineLabel()}
-            selectArrowFollows={this.props.selectArrowFollows}
-            isDisabled={isDisabled}
-            noCarat={this.props.noCarat}
-            addButtonList={this.props.addButtonList}
-          />
+          <div style={{width: '100%'}} onClick={(e) => { if (!isDisabled) { this.toggleOptionsList(e); } }}>
+            <SelectInputDisplay
+              defaultLabel={this.props.defaultLabel}
+              label={this.determineLabel()}
+              selectArrowFollows={this.props.selectArrowFollows}
+              isDisabled={isDisabled}
+              noCarat={this.props.noCarat}
+              addButtonList={this.props.addButtonList}
+            />
+          </div>
           <SelectOptions
             selectedOptions={this.props.value}
             onOptionUpdate={this.onChange}
