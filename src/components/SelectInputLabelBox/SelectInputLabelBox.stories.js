@@ -78,6 +78,29 @@ storiesOf('Form', module)
               </div>
             )
           },
+          {
+            title: 'Disabled SelectInputLabelBox',
+            sectionFn: () => (
+              <div>
+                <SelectInputLabelBox
+                  isDisabled={true}
+                  label="Hello World!"
+                  options={genericOptions} />
+              </div>
+            )
+          },
+          {
+            title: 'Disabled SelectInputLabelBox with value',
+            sectionFn: () => (
+              <div>
+                <SelectInputLabelBox
+                  isDisabled={true}
+                  label="Hello World!"
+                  value="Hi"
+                  options={genericOptions} />
+              </div>
+            )
+          },
         ]
       }
     ]

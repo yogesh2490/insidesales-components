@@ -6,6 +6,7 @@ import { checkDocumentEvent, openOptionsList, closeOptionsList, toggleOptionsLis
 import SelectOptions from '../SelectInput/SelectOptions';
 import { colors } from '../styles/colors';
 import {typography} from '../styles/typography';
+import PropTypes from 'prop-types';
 
 const padding = '16px';
 
@@ -52,21 +53,26 @@ export const Value = styled.button`
   color: ${colors.black90};
   height: 56px;
   padding: 22px ${padding} 0 ${padding};
-  background: ${colors.black10};
+  background: ${colors.lighterGray};
   box-sizing: border-box;
-  border-bottom: 2px solid ${colors.black40};
-  cursor: pointer;
+  border-bottom: 2px solid ${props => props.isDisabled ? 'transparent' : colors.black40};
+  cursor: ${props => props.isDisabled ? 'auto' : 'pointer'};
 
   &:focus {
     outline: 0;
-    border-color: ${colors.green};
+    border-color: ${props => props.isDisabled ? 'transparent' : colors.green};
   }
 `;
 
+
+
 export const Wrapper = styled.div`
   position: relative;
-  cursor: pointer;
   ${typography.subhead1};
+
+  ${props => props.isDisabled && `
+    opacity: 0.6;
+  `}
 `;
 
 export default class SelectInputLabelBox extends React.Component {
@@ -95,6 +101,7 @@ export default class SelectInputLabelBox extends React.Component {
         <Label value={this.props.value}>{this.props.label}</Label>
         <Value
           open={this.state.optionsListVisible}
+          isDisabled={this.props.isDisabled}
           className="select-input-label-box-value"
         >{this.props.value}</Value>
         <SelectOptions
@@ -107,4 +114,21 @@ export default class SelectInputLabelBox extends React.Component {
       </Wrapper>
     )
   }
+}
+
+SelectInputLabelBox.defaultProps = {
+  value: '',
+  label: '',
+  isDisabled: false
+}
+
+SelectInputLabelBox.propTypes = {
+  value: PropTypes.any,
+  options: PropTypes.arrayOf(PropTypes.shape({
+    value: PropTypes.any,
+    label: PropTypes.string,
+  })).isRequired,
+  onChange: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  isDisabled: PropTypes.bool
 }

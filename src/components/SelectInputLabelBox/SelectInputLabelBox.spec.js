@@ -42,4 +42,14 @@ describe('SelectInputLabelBox', () => {
     wrapper.find('.select-input-label-box-value').simulate('click');
     expect(wrapper.state('optionsListVisible')).toBe(false)
   });
+
+  it('does not open when disabled', () => {
+    wrapper = mount(<SelectInputLabelBox
+      options={genericOptions}
+      onChange={changeSpy}
+      isDisabled
+    />)
+    wrapper.find('.select-input-label-box-value').simulate('click');
+    expect(wrapper.state('optionsListVisible')).toBe(false)
+  })
 });
