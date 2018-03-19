@@ -43,18 +43,6 @@ storiesOf('Form', module)
               )
             },
             {
-              title: 'Example: textarea with helper text',
-              sectionFn: () => (
-                <TextareaBox
-                  label="Labely"
-                  helper="Helper text."
-                  error=""
-                  name="second"
-                  onChange={action('value')}
-                />
-              )
-            },
-            {
               title: 'Example: textarea with error text',
               sectionFn: () => (
                 <TextareaBox
@@ -89,27 +77,6 @@ storiesOf('Form', module)
                   name="fifth"
                   value="this is some example text"
                   onChange={action('value')}/>
-              )
-            },
-            {
-              title: 'Example: textarea closed without value',
-              sectionFn: () => (
-                <TextareaBox
-                  label="Label"
-                  helper="Helper text."
-                  name="sixth"
-                  collapsed />
-              )
-            },
-            {
-              title: 'Example: textarea closed without value and has an error',
-              sectionFn: () => (
-                <TextareaBox
-                  label="Label"
-                  helper="Helper text."
-                  error={"This field is required."}
-                  name="sixth"
-                  collapsed />
               )
             },
           ]
