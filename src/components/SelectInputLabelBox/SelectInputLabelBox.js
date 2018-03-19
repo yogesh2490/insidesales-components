@@ -96,7 +96,7 @@ export default class SelectInputLabelBox extends React.Component {
 
   determineLabel = () => {
     const selectedOption = _.find(this.props.options, o => o.value === this.props.value);
-    return selectedOption ? selectedOption.label : this.props.value
+    return _.get(selectedOption, 'label', this.props.value);
   }
 
   render() {
