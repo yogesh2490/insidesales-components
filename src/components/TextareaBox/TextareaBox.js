@@ -77,7 +77,7 @@ const InputBoxStyles = `
   max-height: initial;
 `
 
-const InputBoxItem = styled.textarea`
+const TextareaBoxField = styled.textarea`
   ${InputBoxStyles}
   min-height: ${props => props.focused ? '89px' : '24px'};
   height: ${props => {
@@ -91,7 +91,7 @@ const InputBoxItem = styled.textarea`
   }};
 `;
 
-const InputBoxMeasuring = styled.div`
+const TextareaMeasuring = styled.div`
   ${InputBoxStyles}
   position: absolute;
   top: 0;
@@ -153,12 +153,11 @@ class TextareaBox extends TextInput {
           rows={this.state.rows}
           collapsed={collapsed}
           focused={this.state.focused}>
-          <InputBoxMeasuring
+          <TextareaMeasuring
             ref={(el) => { this.measuringDivEl = ReactDOM.findDOMNode(el); }}
             value={value}
-          >{value}</InputBoxMeasuring>
-          <InputBoxItem
-            type='text'
+          >{value}</TextareaMeasuring>
+          <TextareaBoxField
             onFocus={this.focused}
             onBlur={this.blurred}
             id={name}
@@ -167,7 +166,7 @@ class TextareaBox extends TextInput {
             disabled={disabled}
             error={error}
             value={value}
-            ref={(input) => { this.textInputEl = ReactDOM.findDOMNode(input); }}
+            ref={(el) => { this.textInputEl = ReactDOM.findDOMNode(el); }}
             onChange={this.onChange}
             focused={this.state.focused}/>
           <TextBoxLabel isFocused={this.state.focused} open={this.state.value} htmlFor={name} error={error}>{label}</TextBoxLabel>
