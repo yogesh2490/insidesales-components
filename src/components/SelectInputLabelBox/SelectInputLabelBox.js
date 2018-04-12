@@ -1,12 +1,12 @@
 
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import _ from 'lodash';
 
 import { checkDocumentEvent, openOptionsList, closeOptionsList, toggleOptionsList } from '../SelectInput';
 import SelectOptions from '../SelectInput/SelectOptions';
 import { colors } from '../styles/colors';
-import {typography} from '../styles/typography';
+import { typography } from '../styles/typography';
 import PropTypes from 'prop-types';
 
 const padding = '16px';
@@ -46,25 +46,51 @@ const Caret = styled.div`
 
 export const Value = styled.button`
   border: 0;
-  background: transparent;
   display: block;
   width: 100%;
   text-align: left;
   ${typography.subhead1};
-  color: ${colors.black90};
+  color: ${(props) => {
+    if (props.isPlaceHolder) {
+      return colors.black60;
+    }
+
+    return colors.black90;
+  }};
   height: 56px;
   padding: 22px ${padding} 0 ${padding};
-  background: ${colors.lighterGray};
+  background: ${(props) => {
+    if (props.theme.background) {
+      return props.theme.background;
+    }
+
+    return colors.lightGray;
+  }};
   box-sizing: border-box;
-  border-bottom: 2px solid ${props => props.isDisabled ? 'transparent' : colors.black40};
+  border-bottom-width: ${(props) => {
+    if (props.theme.borderWidth) {
+      return props.theme.borderWidth;
+    }
+
+    return '2px';
+  }};
+  border-bottom-style: solid;
+  border-bottom-color: ${props => props.isDisabled ? 'transparent' : colors.black40};
   cursor: ${props => props.isDisabled ? 'auto' : 'pointer'};
-  border-radius: 2px;
+  border-radius: ${(props) => {
+    if (props.theme.borderRadius) {
+      return props.theme.borderRadius;
+    }
+
+    return '2px';
+  }};
   white-space: nowrap; 
   overflow: hidden;
   text-overflow: ellipsis;
 
   &:focus {
     outline: 0;
+    border-width: 2px;
     border-color: ${props => props.isDisabled ? 'transparent' : colors.green};
   }
 `;
@@ -105,25 +131,29 @@ export default class SelectInputLabelBox extends React.Component {
   render() {
     const optionLabel = this.determineLabel();
     return (
-      <Wrapper onClick={this.toggleOptionsList}
-        {...this.props}
-        ref={(el) => { this.clickEventElement = el }}
-        >
-        <Caret open={this.state.optionsListVisible} />
-        <Label value={this.props.value}>{this.props.label}</Label>
-        <Value
-          open={this.state.optionsListVisible}
-          isDisabled={this.props.isDisabled}
-          title={optionLabel}
-          className="select-input-label-box-value"
-        >{optionLabel}</Value>
-        <SelectOptions
-          selectedOptions={this.props.value}
-          onOptionUpdate={this.props.onChange}
-          options={this.props.options}
-          visible={this.state.optionsListVisible}
-        />
-      </Wrapper>
+      <ThemeProvider theme={this.props.theme}>
+        <Wrapper onClick={this.toggleOptionsList}
+          {...this.props}
+          ref={(el) => { this.clickEventElement = el }}
+          >
+          <Caret open={this.state.optionsListVisible} />
+          <Label value={this.props.value}>{this.props.label}</Label>
+          <Value
+            open={this.state.optionsListVisible}
+            isDisabled={this.props.isDisabled}
+            title={optionLabel}
+            isPlaceHolder={this.props.isPlaceHolder}
+            className="select-input-label-box-value"
+          >{optionLabel}</Value>
+          <SelectOptions
+            selectedOptions={this.props.value}
+            promotedOptions={this.props.promotedOptions}
+            onOptionUpdate={this.props.onChange}
+            options={this.props.options}
+            visible={this.state.optionsListVisible}
+          />
+        </Wrapper>
+      </ThemeProvider>
     )
   }
 }
@@ -131,7 +161,9 @@ export default class SelectInputLabelBox extends React.Component {
 SelectInputLabelBox.defaultProps = {
   value: '',
   label: '',
-  isDisabled: false
+  isDisabled: false,
+  theme: {},
+  isPlaceHolder: false
 }
 
 SelectInputLabelBox.propTypes = {
@@ -142,5 +174,6 @@ SelectInputLabelBox.propTypes = {
   })).isRequired,
   onChange: PropTypes.func.isRequired,
   label: PropTypes.string,
-  isDisabled: PropTypes.bool
+  isDisabled: PropTypes.bool,
+  isPlaceHolder: PropTypes.bool
 }
