@@ -77,9 +77,6 @@ class WrapperEmailThreadComponent extends React.Component {
     />)  
 }
 
-// label=" thread"
-//                   value="Re: Email Subject"
-
 const genericOptions = [
   { value: '1', label: 'Option One' },
   { value: '2', label: 'Option Two' },
