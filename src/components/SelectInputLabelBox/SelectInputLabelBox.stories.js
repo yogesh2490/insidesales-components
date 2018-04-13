@@ -11,11 +11,12 @@ import { colors } from '../styles/colors';
 const OptionWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
 `;
 
 const OptionLabel = styled.div`
-  ${typography.bodyCompact};
+  ${typography.caption};
   color: ${colors.black60};
 `;
 
