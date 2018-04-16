@@ -82,7 +82,7 @@ export const Value = styled.button`
       return props.theme.background;
     }
 
-    return colors.lightGray;
+    return colors.lighterGray;
   }};
   box-sizing: border-box;
   border-bottom-width: ${(props) => {
