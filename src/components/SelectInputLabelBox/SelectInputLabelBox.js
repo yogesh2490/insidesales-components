@@ -118,6 +118,13 @@ export const Value = styled.button`
 export const Wrapper = styled.div`
   position: relative;
   ${typography.subhead1};
+  width: ${(props) => {
+    if (props.theme.selectDisplayWidth) {
+      return props.theme.selectDisplayWidth;
+    }
+
+    return 'auto';
+  }};
 
   ${props => props.isDisabled && `
     opacity: 0.6;
