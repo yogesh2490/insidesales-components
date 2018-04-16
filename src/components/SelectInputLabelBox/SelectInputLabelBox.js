@@ -34,7 +34,13 @@ export const Label = styled.div`
 const Caret = styled.div`
   position: absolute;
   right: 24px;
-  top: 50%;
+  top: ${(props) => {
+    if (props.theme.caretTopPosition) {
+      return props.theme.caretTopPosition;
+    }
+
+    return '50%';
+  }};
   transform: translateY(-50%);
   cursor: pointer;
 
