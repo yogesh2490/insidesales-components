@@ -108,7 +108,6 @@ export const Value = styled.button`
 
   &:focus {
     outline: 0;
-    border-width: 2px;
     border-color: ${props => props.isDisabled ? 'transparent' : colors.green};
   }
 `;
@@ -196,9 +195,9 @@ SelectInputLabelBox.propTypes = {
   value: PropTypes.any,
   options: PropTypes.arrayOf(PropTypes.shape({
     value: PropTypes.any,
-    label: PropTypes.string,
+    label: PropTypes.any,
   })).isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
   label: PropTypes.string,
   isDisabled: PropTypes.bool,
   isPlaceHolder: PropTypes.bool
