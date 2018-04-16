@@ -16,7 +16,13 @@ export const Label = styled.div`
   transition: all 200ms;
   transform: translateY(-50%);
   position: absolute;
-  left: ${padding};
+  left: ${(props) => {
+    if (props.theme.leftDisplayPosition) {
+      return props.theme.leftDisplayPosition;
+    }
+
+    return padding;
+  }};
   top: 50%;
 
   ${props => props.value && `
@@ -58,7 +64,13 @@ export const Value = styled.button`
     return colors.black90;
   }};
   height: 56px;
-  padding: 22px ${padding} 0 ${padding};
+  padding: 22px ${padding} 0 ${(props) => {
+    if (props.theme.leftDisplayPosition) {
+      return props.theme.leftDisplayPosition;
+    }
+
+    return padding;
+  }};
   background: ${(props) => {
     if (props.theme.background) {
       return props.theme.background;
@@ -150,6 +162,7 @@ export default class SelectInputLabelBox extends React.Component {
             promotedOptions={this.props.promotedOptions}
             onOptionUpdate={this.props.onChange}
             options={this.props.options}
+            hideDivider={_.isEmpty(this.props.options)}
             visible={this.state.optionsListVisible}
           />
         </Wrapper>
