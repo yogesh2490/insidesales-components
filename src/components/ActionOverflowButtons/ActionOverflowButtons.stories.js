@@ -86,7 +86,7 @@ storiesOf('Components', module)
 
         ~~~
         import React from 'react';
-        import {StepChain} from 'insidesales-components';
+        import {ActionOverflowButtons} from 'insidesales-components';
         ~~~
       `,
       chapters: [
