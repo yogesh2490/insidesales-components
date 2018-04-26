@@ -89,9 +89,7 @@ class ActionButton extends React.Component {
     super(props);
 
     this.state = {
-      icon: Icons[this.props.icon],
-      toggled: false,
-      isAddIcon: this.props.icon === 'AddIcon'
+      toggled: false
     };
   }
 
@@ -101,15 +99,17 @@ class ActionButton extends React.Component {
   });
 
   render() {
+    const isAddIcon = this.props.icon === 'AddIcon';
+    const icon = Icons[this.props.icon];
     return (
       <Button
         onClick={this.debouncedOnClick}
         toggled={this.props.toggled}
-        isAddIcon={this.state.isAddIcon}
+        isAddIcon={isAddIcon}
         disabled={this.props.disabled}
       >
-        <this.state.icon />
-        {!this.state.isAddIcon &&
+        <icon />
+        {!isAddIcon &&
           <FadeInAddIcon toggled={this.props.toggled} />
         }
       </Button>
