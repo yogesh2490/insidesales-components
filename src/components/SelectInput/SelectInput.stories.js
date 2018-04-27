@@ -3,7 +3,7 @@ import { storiesOf, action } from '@storybook/react';
 import styled from 'styled-components';
 
 import { colors, typography } from '../styles';
-import { AddCircleIcon  } from '../icons';
+import Icons from '../icons';
 
 import {
   lineSelectInputTheme,
@@ -217,7 +217,7 @@ storiesOf('Form', module)
                   value={selectedOptions}
                   multiSelect
                   selectOptionsWidth={250}
-                  bottomActionArea={(<AddButton><AddCircleIcon fill={colors.green} size={{width: 24, height: 24}} /> {'Add Tag'}</AddButton>)}/>
+                  bottomActionArea={(<AddButton><Icons.AddCircleIcon fill={colors.green} size={{width: 24, height: 24}} /> {'Add Tag'}</AddButton>)}/>
               </div>
             )
           },
