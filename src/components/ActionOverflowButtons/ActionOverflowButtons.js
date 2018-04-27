@@ -208,7 +208,7 @@ class ActionOverflowButtons extends React.Component {
       const IconEl = Icons[item.icon];
       return (
         <OverflowListItem key={`overflow-item-${key}`} overflowItemsVisible={overflowItemsVisible} labelsPosition={labelsPosition}>
-          <OverflowItemButton onClick={this.clickItem.bind(this, item.onClick)} labelsPosition={labelsPosition}>
+          <OverflowItemButton onClick={(e) => { this.clickItem(item.onClick, e); }} labelsPosition={labelsPosition}>
             <IconWrapper>
               <IconEl />
             </IconWrapper>
