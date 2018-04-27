@@ -196,7 +196,7 @@ class ActionOverflowButtons extends React.Component {
     }
   }
 
-  clickItem (itemClickEvent, e) {
+  clickItem = (itemClickEvent, e) => {
     itemClickEvent(e);
     this.closeOverflowItems();
   }
